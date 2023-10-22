@@ -1,0 +1,58 @@
+﻿@page "/sitiosturisticos"
+@using EmpresaTuristica.Shared.Entities;
+@using EmpresaTuristica.WEB.Repositories;
+
+@inject IRepository repository
+
+<h3>SitiosTuristicosIndex</h3>
+
+<div class="mb-3">
+
+    <a class="btn btn-primary" href="/sitiosturisticos/create"> Nueva Sitio</a>
+
+</div>
+
+<GenericList MyList="SitiosTuristicos">
+
+    <Body>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Ciudad</th>
+                    <th></th>
+
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var sitio in SitiosTuristicos!)
+                {
+                    <tr>
+                        <td>
+                            @sitio.Nombre
+                        </td>
+                        <td>
+                            <a class="btn btn-warning">Editar</a>
+                            <button class="btn btn-danger">Borrar</button>
+                        </td>
+
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+    </Body>
+
+</GenericList>
+
+@code {
+
+    public List<SitioTuristico>? SitiosTuristicos { get; set; }
+
+    protected async override Task OnInitializedAsync()
+    {
+
+        var responseHttp = await repository.Get<List<SitioTuristico>>("/api/sitiosturisticos");
+        SitiosTuristicos = responseHttp.Response!;
+    }
+
+}

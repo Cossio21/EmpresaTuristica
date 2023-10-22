@@ -3,11 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.4.33213.308
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EmpresaTuristica.Shared", "EmpresaTuristica.Shared\EmpresaTuristica.Shared.csproj", "{823732A2-09A3-4E6F-B366-06E4F1408CAF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EmpresaTuristica.Shared", "EmpresaTuristica.Shared\EmpresaTuristica.Shared.csproj", "{823732A2-09A3-4E6F-B366-06E4F1408CAF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EmpresaTuristica.API", "EmpresaTuristica.API\EmpresaTuristica.API.csproj", "{060BBF46-937A-4DD4-A8BB-89D2F5032D7A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EmpresaTuristica.API", "EmpresaTuristica.API\EmpresaTuristica.API.csproj", "{060BBF46-937A-4DD4-A8BB-89D2F5032D7A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EmpresaTuristica.WEB", "EmpresaTuristica.WEB\EmpresaTuristica.WEB.csproj", "{613AAEDD-8043-4CD4-8119-79D911084BD4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EmpresaTuristica.WEB", "EmpresaTuristica.WEB\EmpresaTuristica.WEB.csproj", "{613AAEDD-8043-4CD4-8119-79D911084BD4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

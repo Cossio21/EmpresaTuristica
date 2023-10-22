@@ -1,0 +1,56 @@
+﻿@page "/actividades"
+@using EmpresaTuristica.Shared.Entities;
+@using EmpresaTuristica.WEB.Repositories;
+
+@inject IRepository repository
+
+<h3>ActividadesIndex</h3>
+
+<div class="mb-3">
+
+    <a class="btn btn-primary" href="/actividades/create"> Nueva Actividad</a>
+
+</div>
+
+<GenericList MyList="Actividades">
+
+    <Body>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Actividad</th>
+                    <th></th>
+
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var actividad in Actividades!)
+                {
+                    <tr>
+                        <td>
+                            @actividad.Nombre
+                        </td>
+                        <td>
+                            <a class="btn btn-warning">Editar</a>
+                            <button class="btn btn-danger">Borrar</button>
+                        </td>
+
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+    </Body>
+
+</GenericList>
+
+@code {
+    public List<Actividad>? Actividades { get; set; }
+
+    protected async override Task OnInitializedAsync()
+    {
+
+        var responseHttp = await repository.Get<List<Actividad>>("/api/actividades");
+        Actividades = responseHttp.Response!;
+    }
+}
