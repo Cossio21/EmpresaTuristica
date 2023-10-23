@@ -1,10 +1,14 @@
 ﻿using EmpresaTuristica.API.Data;
 using EmpresaTuristica.Shared.Entities;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 namespace EmpresaTuristica.API.Controllers
 {
+    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+
     [ApiController]
     [Route("api/sitiosturisticos")]
     public class SitiosTuristicosController: ControllerBase

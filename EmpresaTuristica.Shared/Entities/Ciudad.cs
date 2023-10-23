@@ -12,7 +12,7 @@ namespace EmpresaTuristica.Shared.Entities
         public int Id { get; set; }
 
         [Required]
-        public string? Nombre { get; set; }
+        public string Nombre { get; set; }
 
     }
 }

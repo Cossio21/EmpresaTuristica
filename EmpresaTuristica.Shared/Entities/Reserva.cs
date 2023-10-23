@@ -12,17 +12,17 @@ namespace EmpresaTuristica.Shared.Entities
         public int Id { get; set; }
 
         [Required]
-        public string? Fecha { get; set; }
-        public string? Hora { get; set; }
+        public string Fecha { get; set; }
+        public string Hora { get; set; }
 
         [Required]
-        public string? Estado{ get; set; }
+        public string Estado{ get; set; }
 
         [Required]
-        public string? PagoInicial{ get; set;}
+        public string PagoInicial{ get; set;}
 
         [Required]
-        public string? PagoFinal { get; set;}
+        public string PagoFinal { get; set;}
 
         public Recorrido Recorrido { get; set; }
         public int RecorridoId { get; set; }
