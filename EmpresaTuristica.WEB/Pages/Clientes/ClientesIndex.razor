@@ -1,0 +1,57 @@
+﻿@page "/clientes"
+@using EmpresaTuristica.Shared.Entities;
+@using EmpresaTuristica.WEB.Repositories;
+
+@inject IRepository repository
+
+<h3>ClientesIndex</h3>
+
+<div class="mb-3">
+
+    <a class="btn btn-primary" href="/clientes/create"> Nuevo Cliente</a>
+
+</div>
+
+<GenericList MyList="Clientes">
+
+    <Body>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Cliente</th>
+                    <th></th>
+
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var cliente in Clientes!)
+                {
+                    <tr>
+                        <td>
+                            @cliente.Nombre
+                        </td>
+                        <td>
+                            <a class="btn btn-warning">Editar</a>
+                            <button class="btn btn-danger">Borrar</button>
+                        </td>
+
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+    </Body>
+
+</GenericList>
+
+@code {
+    public List<Cliente>? Clientes { get; set; }
+
+    protected async override Task OnInitializedAsync()
+    {
+
+        var responseHttp = await repository.Get<List<Cliente>>("/api/clientes");
+        Clientes = responseHttp.Response!;
+    }
+
+}

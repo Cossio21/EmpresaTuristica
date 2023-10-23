@@ -1,0 +1,59 @@
+﻿@page "/reservas"
+@using EmpresaTuristica.Shared.Entities;
+@using EmpresaTuristica.WEB.Repositories;
+
+@inject IRepository repository
+
+<h3>ReservasIndex</h3>
+
+<div class="mb-3">
+
+    <a class="btn btn-primary" href="/reservas/create"> Nueva Reserva</a>
+
+</div>
+
+<GenericList MyList="Reservas">
+
+    <Body>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Reserva</th>
+                    <th></th>
+
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var reserva in Reservas!)
+                {
+                    <tr>
+                        <td>
+                            ID: @reserva.Id <br />
+                            Estado: @reserva.Estado
+                        </td>
+                        <td>
+                            <a class="btn btn-warning">Editar</a>
+                            <button class="btn btn-danger">Borrar</button>
+                        </td>
+
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+    </Body>
+
+</GenericList>
+
+@code {
+
+    public List<Reserva>? Reservas { get; set; }
+
+    protected async override Task OnInitializedAsync()
+    {
+
+        var responseHttp = await repository.Get<List<Reserva>>("/api/reservas");
+        Reservas = responseHttp.Response!;
+    }
+
+}

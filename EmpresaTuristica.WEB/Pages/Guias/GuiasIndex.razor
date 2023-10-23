@@ -1,0 +1,56 @@
+﻿@page "/guias"
+@using EmpresaTuristica.Shared.Entities;
+@using EmpresaTuristica.WEB.Repositories;
+
+@inject IRepository repository
+
+<h3>GuiasIndex</h3>
+
+<div class="mb-3">
+
+    <a class="btn btn-primary" href="/guias/create"> Nuevo Guia</a>
+
+</div>
+
+<GenericList MyList="Guias">
+
+    <Body>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Guia</th>
+                    <th></th>
+
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var guia in Guias!)
+                {
+                    <tr>
+                        <td>
+                            @guia.Nombre
+                        </td>
+                        <td>
+                            <a class="btn btn-warning">Editar</a>
+                            <button class="btn btn-danger">Borrar</button>
+                        </td>
+
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+    </Body>
+
+</GenericList>
+
+@code {
+    public List<Guia>? Guias { get; set; }
+
+    protected async override Task OnInitializedAsync()
+    {
+
+        var responseHttp = await repository.Get<List<Guia>>("/api/guias");
+        Guias = responseHttp.Response!;
+    }
+}
