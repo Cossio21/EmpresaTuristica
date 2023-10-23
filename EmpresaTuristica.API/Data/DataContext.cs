@@ -17,6 +17,8 @@ namespace EmpresaTuristica.API.Data
         public DbSet<Reserva> Reservas { get; set; }
         public DbSet<SitiosRecorrido> SitiosRecorridos { get; set; }
         public DbSet<SitioTuristico> SitiosTuristicos { get; set; }
+        public DbSet<Guia> Guias { get; set; }
+        public DbSet<Cliente> Clientes { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);

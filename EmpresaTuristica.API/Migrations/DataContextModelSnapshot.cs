@@ -65,6 +65,64 @@ namespace EmpresaTuristica.API.Migrations
                     b.ToTable("Ciudades");
                 });
 
+            modelBuilder.Entity("EmpresaTuristica.Shared.Entities.Cliente", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Cedula")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Celular")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Correo")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Nombre")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Clientes");
+                });
+
+            modelBuilder.Entity("EmpresaTuristica.Shared.Entities.Guia", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Cedula")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Celular")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Correo")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Nombre")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Guias");
+                });
+
             modelBuilder.Entity("EmpresaTuristica.Shared.Entities.Recorrido", b =>
                 {
                     b.Property<int>("Id")
@@ -96,6 +154,9 @@ namespace EmpresaTuristica.API.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
+                    b.Property<int>("ClienteId")
+                        .HasColumnType("int");
+
                     b.Property<string>("Estado")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -103,6 +164,9 @@ namespace EmpresaTuristica.API.Migrations
                     b.Property<string>("Fecha")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("GuiaId")
+                        .HasColumnType("int");
 
                     b.Property<string>("Hora")
                         .HasColumnType("nvarchar(max)");
@@ -119,6 +183,10 @@ namespace EmpresaTuristica.API.Migrations
                         .HasColumnType("int");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("ClienteId");
+
+                    b.HasIndex("GuiaId");
 
                     b.HasIndex("RecorridoId");
 
@@ -407,11 +475,27 @@ namespace EmpresaTuristica.API.Migrations
 
             modelBuilder.Entity("EmpresaTuristica.Shared.Entities.Reserva", b =>
                 {
+                    b.HasOne("EmpresaTuristica.Shared.Entities.Cliente", "Cliente")
+                        .WithMany()
+                        .HasForeignKey("ClienteId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("EmpresaTuristica.Shared.Entities.Guia", "Guia")
+                        .WithMany()
+                        .HasForeignKey("GuiaId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("EmpresaTuristica.Shared.Entities.Recorrido", "Recorrido")
                         .WithMany()
                         .HasForeignKey("RecorridoId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("Cliente");
+
+                    b.Navigation("Guia");
 
                     b.Navigation("Recorrido");
                 });

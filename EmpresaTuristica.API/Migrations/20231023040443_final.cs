@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace EmpresaTuristica.API.Migrations
 {
     /// <inheritdoc />
-    public partial class Users : Migration
+    public partial class final : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -81,6 +81,38 @@ namespace EmpresaTuristica.API.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Ciudades", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Clientes",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Nombre = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Cedula = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Correo = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Celular = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Clientes", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Guias",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Nombre = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Cedula = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Correo = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Celular = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Guias", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -242,11 +274,25 @@ namespace EmpresaTuristica.API.Migrations
                     Estado = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     PagoInicial = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     PagoFinal = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    RecorridoId = table.Column<int>(type: "int", nullable: false)
+                    RecorridoId = table.Column<int>(type: "int", nullable: false),
+                    GuiaId = table.Column<int>(type: "int", nullable: false),
+                    ClienteId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Reservas", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Reservas_Clientes_ClienteId",
+                        column: x => x.ClienteId,
+                        principalTable: "Clientes",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Reservas_Guias_GuiaId",
+                        column: x => x.GuiaId,
+                        principalTable: "Guias",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_Reservas_Recorridos_RecorridoId",
                         column: x => x.RecorridoId,
@@ -339,6 +385,16 @@ namespace EmpresaTuristica.API.Migrations
                 unique: true);
 
             migrationBuilder.CreateIndex(
+                name: "IX_Reservas_ClienteId",
+                table: "Reservas",
+                column: "ClienteId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Reservas_GuiaId",
+                table: "Reservas",
+                column: "GuiaId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Reservas_RecorridoId",
                 table: "Reservas",
                 column: "RecorridoId");
@@ -399,6 +455,12 @@ namespace EmpresaTuristica.API.Migrations
 
             migrationBuilder.DropTable(
                 name: "AspNetUsers");
+
+            migrationBuilder.DropTable(
+                name: "Clientes");
+
+            migrationBuilder.DropTable(
+                name: "Guias");
 
             migrationBuilder.DropTable(
                 name: "Recorridos");

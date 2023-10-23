@@ -26,5 +26,11 @@ namespace EmpresaTuristica.Shared.Entities
 
         public Recorrido Recorrido { get; set; }
         public int RecorridoId { get; set; }
+
+        public Guia Guia { get; set; }
+        public int GuiaId { get; set;}
+
+        public Cliente Cliente { get; set; }
+        public int ClienteId { get;set; }
     }
 }
