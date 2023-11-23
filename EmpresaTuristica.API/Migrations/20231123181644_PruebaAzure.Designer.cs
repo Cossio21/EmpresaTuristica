@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EmpresaTuristica.API.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20231123175331_owners")]
-    partial class owners
+    [Migration("20231123181644_PruebaAzure")]
+    partial class PruebaAzure
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
