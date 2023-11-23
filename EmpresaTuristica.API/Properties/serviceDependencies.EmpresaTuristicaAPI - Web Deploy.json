@@ -1,0 +1,15 @@
+{
+  "dependencies": {
+    "apis1": {
+      "ignored": "true",
+      "type": "apis.azure"
+    },
+    "mssql1": {
+      "secretStore": "AzureAppSettings",
+      "resourceId": "/subscriptions/[parameters('subscriptionId')]/resourcegroups/[parameters('resourceGroupName')]/providers/Microsoft.Sql/servers/empresaturisticaapidbdbserver/databases/EmpresaTuristicaAPIdb",
+      "type": "mssql.azure",
+      "connectionId": "ConnectionStrings:Dconexion",
+      "dynamicId": null
+    }
+  }
+}
