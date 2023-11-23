@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EmpresaTuristica.API.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20231023040443_final")]
-    partial class final
+    [Migration("20231123175331_owners")]
+    partial class owners
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -124,6 +124,22 @@ namespace EmpresaTuristica.API.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Guias");
+                });
+
+            modelBuilder.Entity("EmpresaTuristica.Shared.Entities.Owner", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Owners");
                 });
 
             modelBuilder.Entity("EmpresaTuristica.Shared.Entities.Recorrido", b =>

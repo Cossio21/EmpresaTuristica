@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace EmpresaTuristica.API.Migrations
 {
     /// <inheritdoc />
-    public partial class final : Migration
+    public partial class migracionfinal : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
